@@ -11,6 +11,9 @@ const progress = document.getElementById("progress");
 const game = document.getElementById("game");
 const end_message = document.getElementById("end_message");
 const errors = document.getElementById("errors");
+const player_name = document.getElementById("player_name");
+const form_score = document.getElementById("form_score");
+const final_result = document.getElementById("final_result");
 
 let started = false;
 let end = false;
@@ -32,6 +35,8 @@ const sequence = [1,2,3,4,5,6];
 let selected = 0;
 let count_errors = 0;
 
+Array.prototype.shuffle = () => sequence.sort(() => .5 - Math.random());
+
 function init() {
     setEndGame();
     btn1.style.backgroundColor = BLUE;
@@ -50,6 +55,7 @@ function init() {
     count_errors=0;
     progress.style.width = "100%"
     errors.textContent = "Erros: 0";
+    final_result.textContent = "Pontuação: 0"
     changeContent();
     visibleAll();
 }
@@ -119,6 +125,7 @@ function setEndGame() {
     end = true;
     clearInterval(timer);
     errors.textContent = "Erros: "+count_errors;
+    final_result.textContent = "Pontuação: "+score.textContent;
     changeContent();
 }
 
@@ -128,8 +135,31 @@ function changeContent() {
         end_message.classList.remove("hide");
     } else {
         game.classList.remove("hide");
+        form_score.classList.remove("invisible");
         end_message.classList.add("hide");
     }
 }
 
-Array.prototype.shuffle = () => sequence.sort(() => .5 - Math.random());
+function saveScore() {
+    form_score.classList.add("invisible");
+    let player_score = {
+        "name": player_name.textContent,
+        "points": score.textContent,
+        "errors": count_errors
+    }
+
+    let scores  = localStorage.getItem("scores");
+
+    if(scores === null) {
+        scores = [...player_score];
+        localStorage.setItem("scores", JSON.stringify(scores));
+    } else {
+        scores = JSON.parse(scores);
+        scores.push(player_score);
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
+}
+
+function showRank() {
+    window.open("pages/rank.html");
+}
