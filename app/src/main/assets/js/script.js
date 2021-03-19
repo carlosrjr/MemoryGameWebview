@@ -21,8 +21,7 @@ let end = false;
 let timer;
 
 const TIME_GAME = 30000; // 30 segundos 
-let points = TIME_GAME;
-
+const MAX_SCORES_RANK = 30;
 const BLUE = "#0166ff";
 const RED = "#fd0000";
 const GREEN = "#006500";
@@ -34,6 +33,7 @@ const WHITE = "#ffffff";
 const sequence = [1,2,3,4,5,6];
 let selected = 0;
 let count_errors = 0;
+let points = TIME_GAME;
 
 Array.prototype.shuffle = () => sequence.sort(() => .5 - Math.random());
 
@@ -140,10 +140,12 @@ function changeContent() {
     }
 }
 
+let sortScores = (a, b) => (a.points > b.points) ? -1 : (a.points < b.points) ? 1 : (a.errors > b.errors) ? 1 : (a.errors < b.errors) ? -1 : 0;
+
 function saveScore() {
     form_score.classList.add("invisible");
     let player_score = {
-        "name": player_name.textContent,
+        "name": player_name.value,
         "points": score.textContent,
         "errors": count_errors
     }
@@ -151,12 +153,13 @@ function saveScore() {
     let scores  = localStorage.getItem("scores");
 
     if(scores === null) {
-        scores = [...player_score];
+        scores = [player_score];
         localStorage.setItem("scores", JSON.stringify(scores));
     } else {
         scores = JSON.parse(scores);
         scores.push(player_score);
-        localStorage.setItem("scores", JSON.stringify(scores));
+        scores.sort(sortScores);
+        localStorage.setItem("scores", JSON.stringify(scores.slice(0, MAX_SCORES_RANK)));
     }
 }
 
