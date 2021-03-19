@@ -8,8 +8,8 @@ const score = document.getElementById("score");
 const body = document.getElementById("body");
 const btn_reset = document.getElementById("reset");
 const progress = document.getElementById("progress");
+const endgame = document.getElementById("endgame");
 const game = document.getElementById("game");
-const end_message = document.getElementById("end_message");
 const errors = document.getElementById("errors");
 const player_name = document.getElementById("player_name");
 const form_score = document.getElementById("form_score");
@@ -39,6 +39,8 @@ Array.prototype.shuffle = () => sequence.sort(() => .5 - Math.random());
 
 function init() {
     setEndGame();
+    end = false;
+    changeContent();
     btn1.style.backgroundColor = BLUE;
     btn2.style.backgroundColor = RED;
     btn3.style.backgroundColor = GREEN;
@@ -50,13 +52,11 @@ function init() {
     points = TIME_GAME;
     btn_reset.textContent = "Iniciar";
     started = false;
-    end = false;
     selected=0;
     count_errors=0;
     progress.style.width = "100%"
     errors.textContent = "Erros: 0";
     final_result.textContent = "Pontuação: 0"
-    changeContent();
     visibleAll();
 }
 
@@ -132,11 +132,11 @@ function setEndGame() {
 function changeContent() {
     if(end) {
         game.classList.add("hide");
-        end_message.classList.remove("hide");
+        endgame.classList.remove("hide");
     } else {
+        endgame.classList.add("hide");
         game.classList.remove("hide");
         form_score.classList.remove("invisible");
-        end_message.classList.add("hide");
     }
 }
 

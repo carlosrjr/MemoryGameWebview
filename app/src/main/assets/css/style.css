@@ -35,6 +35,8 @@ html, body {
 .btn {
     border: 0;
     border-radius: 5px;
+    background-color: #6200ee;
+    color: #fff;
 }
 
 #box_score {
@@ -50,6 +52,7 @@ html, body {
     width: 40%;
     height: 25%;
     font-size: 2.5em;
+    color: #fff;
 }
 
 .invisible {
@@ -72,7 +75,7 @@ html, body {
 #progress {
     height: 20px;
     border-radius: 20px;
-    background-color: aquamarine;
+    background-color: #6200ee;
 }
 
 #end_message {
@@ -105,7 +108,7 @@ html, body {
     border: none;
     font-size: 1.5em;
     text-align: center;
-    border-bottom: solid 1px aquamarine;
+    border-bottom: solid 2px #6200ee;
     padding: 2px 10px;
     background-color: transparent;
 }
