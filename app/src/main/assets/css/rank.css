@@ -12,6 +12,24 @@ a, :focus {
     outline: none;
 }
 
+#control_buttons {
+    text-align: center;
+    padding: 30px 20px 10px 20px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 5px;
+    background-color: #6200ee;
+    color: #fff;
+}
+
+.btn-control {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
 .styled-table {
     width: 100%;
     border-collapse: collapse;
@@ -55,4 +73,31 @@ a, :focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.size-icon {
+    font-size: 7em;
+    color: #999;
+}
+
+.hide {
+    display: none;
+}
+
+#no_content {
+    text-align: center;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+#sort_type {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #6200ee;
+    color: #fff;
 }

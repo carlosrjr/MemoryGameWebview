@@ -4,11 +4,19 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/rank.css">
         <title>Ranking de jogadores</title>
     </head>
     <body onload="init();">
         <div id="content">
+            <div id="control_buttons">
+                <button id="reset" class="btn btn-control btn-reset" onclick="clearRank();">Limpar rank</button>
+                <select name="sort" id="sort_type" onchange="changeSort();">
+                    <option value="points" selected>Pontos</option>
+                    <option value="errors">Erros</option>
+                </select>
+            </div>
             <table class="styled-table">
                 <thead>
                     <tr>
@@ -21,6 +29,12 @@
                 <tbody id="players_table">
                 </tbody>
             </table>
+        </div>
+        <div id="no_content" class="centered hide">
+            <i class="fa fa-exclamation-circle size-icon" aria-hidden="true"></i>
+            <p id="message">
+                Nenhum jogador encontrado no rank
+            </p>
         </div>
 
         <script src="../js/rank.js"></script>

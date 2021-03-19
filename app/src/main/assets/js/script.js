@@ -150,6 +150,7 @@ function saveScore() {
         "errors": count_errors
     }
 
+    player_name.value = "";
     let scores  = localStorage.getItem("scores");
 
     if(scores === null) {
@@ -158,7 +159,12 @@ function saveScore() {
     } else {
         scores = JSON.parse(scores);
         scores.push(player_score);
-        scores.sort(sortScores);
+        scores.map(score => {
+                score["points"] = parseInt(score["points"]);
+                score["errors"] = parseInt(score["errors"]);
+                return score;
+            })
+            .sort(sortScores);
         localStorage.setItem("scores", JSON.stringify(scores.slice(0, MAX_SCORES_RANK)));
     }
 }
